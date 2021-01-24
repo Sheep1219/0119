@@ -1,17 +1,14 @@
 <template lang="pug">
   #app
-    //- #nav
-    //-   router-link(to="/") Home |
-    //-   router-link(to="/about") About
+    #nav
     .pageContainer
       img.pic.pic1(src="./assets/ps.png" width="70" alt="一張圖片")
       img.pic.pic2(src="./assets/arduino.png" width="70" alt="一張圖片")
       img.pic.pic3(src="./assets/dev.png" width="70" alt="一張圖片")
       img.pic.pic4(src="./assets/vsc.png" width="70" alt="一張圖片")
-      .menuContainer
-        .menuItem(v-for="item in menu") {{item.title}}
-          .menuListContainer
-            .menuList(v-for="i in item.item") {{i}}
+      .menuList
+        router-link.menu(v-for="item in menu" :to="{path:'/'+item.id}" :key="item.id")
+          .menuItem {{item.title}}
       .pageName
         .eng NTHU IPTA
         .chi 藝術學院學士班
@@ -22,11 +19,11 @@ export default {
   data(){
     return {
       menu: [
-        {title: 'Home'},
-        {title: '招生', item: ['春之清華獎學金', '招生Q&A', '學士班FB粉絲頁']},
-        {title: '課程'},
-        {title: '師資'},
-        {title: '科藝賞析'}
+        {title: 'Home', id:''},
+        {title: '招生', id:'student'},
+        {title: '課程', id:'course'},
+        {title: '師資', id:'teacher'},
+        {title: '範例&聯絡', id:'example'}
       ]
     }
   }
